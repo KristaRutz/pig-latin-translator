@@ -24,7 +24,7 @@ function translateWordToPL(str){
 
   if (str.length === 1) { // one letter word
     var pigStr = str + "ay";
-  } else if (firstCharStr === "a" || firstCharStr ===  "e" || firstCharStr === "i" || firstCharStr === "o" ||firstCharStr ===  "u") { // begins with vowel
+  } else if (firstCharStr === "a" || firstCharStr ===  "e" || firstCharStr === "i" || firstCharStr === "o" ||firstCharStr ===  "u" || firstCharStr === "A" || firstCharStr ===  "E" || firstCharStr === "I" || firstCharStr === "O" ||firstCharStr ===  "U") { // begins with vowel
     var pigStr = str + "way";
   } else { // begins with consonant
 
