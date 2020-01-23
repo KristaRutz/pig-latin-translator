@@ -3,7 +3,13 @@
 var vowels = ["a", "e", "i", "o", "u", "y"];
 
 function translateToPL(str){
-  return translateWordToPL(str);
+  var wordSplit = str.split(" ");
+  var newSentence = [];
+  console.log(wordSplit)
+  for(var i = 0; i < wordSplit.length; i++) {
+    newSentence.push(translateWordToPL(wordSplit[i]));
+  }
+  return newSentence.join(" ");
 }
 
 
@@ -11,7 +17,6 @@ function translateWordToPL(str){
 
   var restOfStr = str.substr(1);
   var firstCharStr = str.charAt(0);
-  var arrayedStr = [];
   var splitChar = str.split("");
   // console.log(splitChar)
   // var testWord = "crab"
@@ -22,29 +27,29 @@ function translateWordToPL(str){
   } else if (firstCharStr === "a" || firstCharStr ===  "e" || firstCharStr === "i" || firstCharStr === "o" ||firstCharStr ===  "u") { // begins with vowel
     var pigStr = str + "way";
   } else { // begins with consonant
-    console.log(str);
 
     for (var i = 0 ; i < vowels.length ; i += 1){
       if(!firstVowelIndex) {
         if (vowels.includes(splitChar[i])){
-          console.log("vowels!");
           var firstVowelIndex = i;
-          console.log(firstVowelIndex);
+
 
           restOfStr = str.substr(i);
           firstCharStr = str.substr(0, i);
-          console.log(str);
-        } else {
-          console.log("no vowels")
-        }
+
+          if (firstCharStr.charAt(1) === "q" && restOfStr.charAt(0) === "u"){
+            firstCharStr = firstCharStr + "u";
+            restOfStr = restOfStr.substr(1);
+            //console.log(restOfStr + firstCharStr + "ay")
+          }
+
+        } 
       }
     }
-    console.log(str);
     var pigStr = restOfStr + firstCharStr + "ay";
-    console.log(str);
+
   }
-  
-  console.log(pigStr)
+
   return pigStr;
 }
 
@@ -56,7 +61,6 @@ $(document).ready(function() {
     event.preventDefault();
 
     var input = $("#inputText").val();
-    console.log(input);
 
     var output = translateToPL(input);
     $("#output").text(`Translation: ${output}`);
